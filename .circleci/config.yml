@@ -16,7 +16,7 @@ jobs:
         sudo apt-get update
         sudo apt install python3-pip
         sudo pip3 install awsebcli --upgrade
-      - run: cd ./app && npm install && npm run build
+      - run: cd ./turners && npm install && npm run build
       - persist_to_workspace:
           root: .
           paths:
@@ -28,7 +28,7 @@ jobs:
       - attach_workspace:
           at: .
       - checkout
-      - run: cd ./app && npm run test
+      - run: cd ./turners && npm run test
       - persist_to_workspace:
       root: .
       paths:
@@ -40,4 +40,4 @@ jobs:
       - attach_workspace:
           at: .
       - checkout
-      - run: aws s3 sync ./app/build s3://ci-cd-turners
+      - run: aws s3 sync ./turners/build s3://ci-cd-turners
